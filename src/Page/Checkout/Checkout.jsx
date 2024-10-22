@@ -3,6 +3,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import { getCourseDataLocalStorage, getLocalStorage, removeLocalStorage, setCourseDataLocalStorage } from "../../Utilities/addtocart";
 import Swal from "sweetalert2";
+import OrderDetails from "../OrderDetails/OrderDetails";
 
 const Checkout = () => {
     const [cartId, setCartId] = useState(getLocalStorage() || []);
@@ -66,8 +67,11 @@ const Checkout = () => {
             studentPhoto : formData.get('studentPhoto'),
             presentAddress: formData.get('presentAddress'),
             permanentAddress: formData.get('permanentAddress'),
-            totalPrice
+            totalPrice,
+            quantity,
+            cartData
         };
+        <OrderDetails courseData={courseData}></OrderDetails>
         const getCourseData = getCourseDataLocalStorage();
         const emailExists = getCourseData.find(course => course.email === courseData?.email);
         const formNoExists = getCourseData.find(course => course.formNo === courseData?.formNo);
@@ -310,7 +314,6 @@ const Checkout = () => {
                             <textarea
                                 id="permanentAddress"
                                 placeholder="Enter your permanent address"
-                                id="permanentAddress"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
                         </div>
