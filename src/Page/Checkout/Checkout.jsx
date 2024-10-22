@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const Checkout = () => {
     return (
         <div className="  mt-5 border mx-2">
-            <div class="bg-[#6f42c1] text-white p-6 text-center mb-5">
+            <div className="bg-[#6f42c1] text-white p-6 text-center mb-5">
                 <h2 className='text-5xl font-bold'>Trainee Admission Form</h2>
             </div>
             <form className="bg-white shadow-md rounded-lg p-6">
