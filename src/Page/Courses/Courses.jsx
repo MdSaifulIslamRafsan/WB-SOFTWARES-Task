@@ -1,14 +1,39 @@
 import { useEffect, useState } from "react";
+import { getLocalStorage, setLocalStorage } from "../../Utilities/addtocart";
+import Swal from "sweetalert2";
 
 
 const Courses = () => {
+    
     const [coursesData, setCourseData] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
     const [perPage, setPerPage] = useState(3);
     const indexOfLast = currentPage * perPage;
     const indexOfFirst = indexOfLast - perPage;
     const currentCourses = coursesData?.courseData?.slice(indexOfFirst, indexOfLast) || [];
-
+    const handleAddToCart =(id)=>{
+        const currentCart = getLocalStorage() || [];
+        if (currentCart.includes(id)) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Item already in cart',
+                text: 'This item is already in your cart!',
+                confirmButtonText: 'OK'
+            });
+        } else {
+            setLocalStorage(id);
+            Swal.fire({
+                icon: 'success',
+                title: 'Added to cart',
+                text: 'Item successfully added to your cart!',
+                confirmButtonText: 'OK'
+            });
+            setTimeout(function(){
+                window.location.reload(1);
+             }, 2000);
+        }    
+        
+    }
     
     useEffect(()=>{
       async function getCourse(){
@@ -57,7 +82,7 @@ const Courses = () => {
                         </div>
                     </div>
                     <div className="mt-4 flex gap-2">
-                        <button className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-500 w-full font-bold text-md">Add To Cart</button>
+                        <button onClick={()=> handleAddToCart(course?.id)} className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-500 w-full font-bold text-md">Add To Cart</button>
 
                     </div>
                 </div>
