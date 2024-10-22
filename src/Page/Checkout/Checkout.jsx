@@ -42,6 +42,34 @@ const Checkout = () => {
         const qty = quantity[course.id] || 1;
         return sum + (course.discount_price * qty);
     }, 0);
+
+    const handleFormData = (e) => {
+        e.preventDefault();
+
+        const formData = new FormData(e.target);
+        const courseData = {
+            fullName: formData.get('fullName'),
+            formNo: formData.get('formNo'),
+            parentName : formData.get('parentName'),
+            ParentNumber : formData.get('parentNumber'),
+            school : formData.get('school'),
+            jobTitle: formData.get('jobTitle'),
+            email : formData.get('email'),
+            gender : formData.get('gender'),
+            nid : formData.get('nid'),
+            mobile: formData.get('mobile'),
+            guardianName: formData.get('guardianName'),
+            guardianNumber: formData.get('guardianNumber'),
+            bloodGroup: formData.get('bloodGroup'),
+            dateOfBirth : formData.get('dateOfBirth'),
+            studentPhoto : formData.get('studentPhoto'),
+            presentAddress: formData.get('presentAddress'),
+            permanentAddress: formData.get('permanentAddress'),
+            totalPrice
+        };
+        console.log(courseData);
+        
+    }
     
     const removeItemFromCart = (courseId) => {
         removeLocalStorage(courseId);
@@ -52,7 +80,7 @@ const Checkout = () => {
             <div className="bg-[#6f42c1] text-white p-6 text-center mb-5">
                 <h2 className='text-5xl font-bold'>Trainee Admission Form</h2>
             </div>
-            <form className="bg-white shadow-md rounded-lg p-6">
+            <form onSubmit={(e)=> handleFormData(e)} className="bg-white shadow-md rounded-lg p-6">
                 {/* Trainee Information Section */}
                 <div className="form-section">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -61,6 +89,8 @@ const Checkout = () => {
                             <input
                                 type="text"
                                 id="fullName"
+                                name="fullName"
+                                placeholder="Enter full name"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
                         </div>
@@ -69,6 +99,8 @@ const Checkout = () => {
                             <input
                                 type="text"
                                 id="formNo"
+                                placeholder="Enter your Form No"
+                                name="formNo"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
                         </div>
@@ -80,6 +112,8 @@ const Checkout = () => {
                             <input
                                 type="text"
                                 id="parentName"
+                                placeholder="Enter your father/mother name"
+                                name="parentName"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
                         </div>
@@ -88,6 +122,8 @@ const Checkout = () => {
                             <input
                                 type="text"
                                 id="parentNumber"
+                                placeholder="Enter your parent Number"
+                                name="ParentNumber"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
                         </div>
@@ -99,14 +135,18 @@ const Checkout = () => {
                             <input
                                 type="text"
                                 id="school"
+                                placeholder="Enter your School / college name"
+                                name= "school"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
                         </div>
                         <div>
-                            <label htmlFor="jobInfo" className="block font-semibold text-base mb-2">Job Title:</label>
+                            <label htmlFor="jobTitle" className="block font-semibold text-base mb-2">Job Title:</label>
                             <input
                                 type="text"
-                                id="jobInfo"
+                                id="jobTitle"
+                                placeholder="Enter your Job Title"
+                                name="jobTitle"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
                         </div>
@@ -117,6 +157,8 @@ const Checkout = () => {
                             <label htmlFor="email" className="block font-semibold text-base mb-2">Email:</label>
                             <input
                                 type="email"
+                                placeholder="Enter your email address"
+                                name="email"
                                 id="email"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
@@ -124,6 +166,7 @@ const Checkout = () => {
                         <div>
                             <label htmlFor="gender" className="block font-semibold text-base mb-2">Gender:</label>
                             <select
+                            name="gender"
                                 id="gender"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             >
@@ -139,15 +182,19 @@ const Checkout = () => {
                         <div>
                             <label htmlFor="nid" className="block font-semibold text-base mb-2">NID Number:</label>
                             <input
-                                type="text"
+                                type="number"
                                 id="nid"
+                                placeholder="Enter your NID Number"
+                                name="nid"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
                         </div>
                         <div>
                             <label htmlFor="mobile" className="block font-semibold text-base mb-2">Mobile No:</label>
                             <input
-                                type="text"
+                                type="number"
+                                placeholder="Enter your mobile number"
+                                name="mobile"
                                 id="mobile"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
@@ -159,6 +206,8 @@ const Checkout = () => {
                             <label htmlFor="guardianName" className="block font-semibold text-base mb-2">Local Guardian’s Name:</label>
                             <input
                                 type="text"
+                                placeholder="Enter your local guardian name"
+                                name="guardianName"
                                 id="guardianName"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
@@ -167,6 +216,8 @@ const Checkout = () => {
                             <label htmlFor="guardianName" className="block font-semibold text-base mb-2">Local Guardian’s Number:</label>
                             <input
                                 type="text"
+                                placeholder="Enter your local guardian number"
+                                name="guardianNumber"
                                 id="guardianNumber"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
@@ -179,7 +230,9 @@ const Checkout = () => {
                             <label htmlFor="bloodGroup" className="block font-semibold text-base mb-2">Blood Group:</label>
                             <select
                                 id="bloodGroup"
+                                name="bloodGroup"
                                 className="w-full border border-gray-300 rounded-md p-2"
+
                             >
                                 <option value="" disabled selected>Select Blood Group</option>
                                 <option value="A+">A+</option>
@@ -196,6 +249,7 @@ const Checkout = () => {
                             <label htmlFor="dob" className="block font-semibold text-base mb-2">Date of Birth:</label>
                             <input
                                 type="date"
+                                name="dateOfBirth"
                                 id="dob"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
@@ -204,10 +258,12 @@ const Checkout = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                        
                         <div>
-                            <label htmlFor="dob" className="block font-semibold text-base mb-2">Student Photo:</label>
+                            <label htmlFor="studentPhoto" className="block font-semibold text-base mb-2">Student Photo:</label>
                             <input
                                 type="text"
-                                id="dob"
+                                placeholder="Enter student photo URL"
+                                name="studentPhoto"
+                                id="studentPhoto"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
                         </div>
@@ -216,13 +272,17 @@ const Checkout = () => {
                         <div>
                             <label htmlFor="presentAddress" className="block font-semibold text-base mb-2">Present Address:</label>
                             <textarea
+                            placeholder="Enter your present address"
                                 id="presentAddress"
+                                name="presentAddress"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
                         </div>
                         <div>
                             <label htmlFor="permanentAddress" className="block font-semibold text-base mb-2">Permanent Address:</label>
                             <textarea
+                                id="permanentAddress"
+                                placeholder="Enter your permanent address"
                                 id="permanentAddress"
                                 className="w-full border border-gray-300 rounded-md p-2"
                             />
