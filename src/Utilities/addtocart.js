@@ -9,8 +9,15 @@ const getLocalStorage = () => {
 
 const setLocalStorage = (id) => {
     const getCartData = getLocalStorage();
-    const addCart = [...getCartData, id]
-    localStorage.setItem('cartData', JSON.stringify(addCart));
+    if (!getCartData.includes(id)) {
+        const addCart = [...getCartData, id];
+        localStorage.setItem('cartData', JSON.stringify(addCart));
+    }
+}
+const removeLocalStorage = (id) => {
+    const getCartData = getLocalStorage();
+    const updatedCart = getCartData.filter(cartId => cartId !== id);
+    localStorage.setItem('cartData', JSON.stringify(updatedCart));
 }
 
-export {setLocalStorage , getLocalStorage}
+export {setLocalStorage , getLocalStorage, removeLocalStorage }
