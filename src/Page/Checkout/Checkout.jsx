@@ -255,7 +255,7 @@ const Checkout = () => {
                             />
                         </div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                    <div className="mb-4">
                        
                         <div>
                             <label htmlFor="studentPhoto" className="block font-semibold text-base mb-2">Student Photo:</label>
