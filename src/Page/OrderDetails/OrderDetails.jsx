@@ -138,15 +138,13 @@ const OrderDetails = () => {
                                         Course Name
                                     </th>
                                     <th className="lg:w-72 md:w-64 w-40 py-2 md:py-4 lg:py-6 ">
-                                      Student   Name
+                                      Student Name
                                     </th>
                                    
                                     <th className="lg:w-20 md:w-20 w-16  py-2 md:py-4 lg:py-6  text-center">
                                      Price
                                     </th>
-                                    <th className="lg:w-20 md:w-20 w-16  py-2 md:py-4 lg:py-6  text-center">
-                                    totalPrice
-                                    </th>
+                                    
                                 </tr>
                             </thead>
                             {
@@ -170,15 +168,13 @@ const OrderDetails = () => {
                                      <td className="lg:py-6 md:py-4 py-2 text-center ">
                                          {course?.discount_price}
                                      </td>
-                                     <td className="lg:py-6 md:py-4 py-2 text-center ">
-                                       {totalPrice}
-                                     </td>
                                  </tr>
                              
                          </tbody> )
                             }
                            
                         </table>
+                                    
                     </div>
                     </div>
                    

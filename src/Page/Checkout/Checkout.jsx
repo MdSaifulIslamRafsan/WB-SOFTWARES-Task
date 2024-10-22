@@ -9,12 +9,16 @@ const Checkout = () => {
     const [cartId, setCartId] = useState(getLocalStorage() || []);
     const [coursesData, setCourseData] = useState({});
     const [quantity, setQuantity] = useState({}); 
+    const [price, setPrice] = useState(0);
+    console.log(price);
+    
 
     const incrementQuantity = (courseId) => {
         setQuantity(prev => ({
             ...prev,
             [courseId]: (prev[courseId] || 1) + 1 
         }));
+
     };
 
     const decrementQuantity = (courseId) => {
@@ -28,6 +32,7 @@ const Checkout = () => {
             }
             return prev; 
         });
+        
     };
 
     useEffect(() => {
@@ -332,7 +337,7 @@ const Checkout = () => {
                                     </div>
                                     <div className="flex flex-col">
                                         <h3 className="text-base font-bold text-gray-800">{course?.course_name}</h3>
-                                        <button onClick={()=>removeItemFromCart(course?.id)} type="button" className="my-3 font-semibold text-red-500 text-xs flex items-center gap-1">
+                                        <button onClick={()=>removeItemFromCart(course?.id , course?.discount_price)} type="button" className="my-3 font-semibold text-red-500 text-xs flex items-center gap-1">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="w-4 fill-current inline" viewBox="0 0 24 24">
                                                 <path d="M19 7a1 1 0 0 0-1 1v11.191A1.92 1.92 0 0 1 15.99 21H8.01A1.92 1.92 0 0 1 6 19.191V8a1 1 0 0 0-2 0v11.191A3.918 3.918 0 0 0 8.01 23h7.98A3.918 3.918 0 0 0 20 19.191V8a1 1 0 0 0-1-1Zm1-3h-4V2a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v2H4a1 1 0 0 0 0 2h16a1 1 0 0 0 0-2ZM10 4V3h4v1Z" />
                                                 <path d="M11 17v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Zm4 0v-7a1 1 0 0 0-2 0v7a1 1 0 0 0 2 0Z" />
@@ -342,7 +347,7 @@ const Checkout = () => {
                                         <div className="md:hidden md:ml-auto flex items-center gap-4">
                                     <h4 className="text-lg font-bold text-gray-800"> ${parseFloat((quantity[course.id] || 1) * (course?.discount_price || 0))}</h4>
                                     <div className="flex items-center gap-1">
-                                        <button onClick={() => decrementQuantity(course?.id)} type="button" className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center">
+                                        <button onClick={() => decrementQuantity(course?.id , course?.discount_price)} type="button" className="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center">
                                             <svg xmlns="http://www.w3.org/2000/svg" className="w-3 fill-current" viewBox="0 0 24 24">
                                                 <path d="M19 13H5v-2h14v2z" />
                                             </svg>
