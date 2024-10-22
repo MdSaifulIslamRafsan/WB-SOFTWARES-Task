@@ -128,7 +128,7 @@ const Checkout = () => {
                         <div>
                             <label htmlFor="formNo" className="block font-semibold text-base mb-2">Form no:</label>
                             <input
-                                type="text"
+                                type="number"
                                 id="formNo"
                                 placeholder="Enter your Form No"
                                 name="formNo"

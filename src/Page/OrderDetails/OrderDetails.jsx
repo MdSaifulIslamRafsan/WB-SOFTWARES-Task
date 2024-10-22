@@ -51,7 +51,7 @@ const OrderDetails = () => {
                                         </p>
                                     </div>
                                     <div className="flex items-center justify-between border-2 p-2">
-                                        <p>Full Name :  :</p>
+                                        <p>Full Name :</p>
                                         <p>{fullName}</p>
                                     </div>
                                     <div className="flex items-center justify-between border-2 p-2">
