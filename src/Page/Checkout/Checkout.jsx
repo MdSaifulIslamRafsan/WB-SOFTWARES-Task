@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import { getLocalStorage, removeLocalStorage } from "../../Utilities/addtocart";
+import { getCourseDataLocalStorage, getLocalStorage, removeLocalStorage, setCourseDataLocalStorage } from "../../Utilities/addtocart";
+import Swal from "sweetalert2";
 
 const Checkout = () => {
     const [cartId, setCartId] = useState(getLocalStorage() || []);
@@ -67,7 +68,33 @@ const Checkout = () => {
             permanentAddress: formData.get('permanentAddress'),
             totalPrice
         };
-        console.log(courseData);
+        const getCourseData = getCourseDataLocalStorage();
+        const emailExists = getCourseData.find(course => course.email === courseData?.email);
+        const formNoExists = getCourseData.find(course => course.formNo === courseData?.formNo);
+        if (emailExists) {
+            Swal.fire({
+              title: 'Email Already Exists',
+              text: 'The email you entered is already associated with an existing course.',
+              icon: 'warning',
+              confirmButtonText: 'OK'
+            });
+          } else if (formNoExists) {
+            Swal.fire({
+              title: 'Form Number Already Exists',
+              text: 'The form number you entered is already associated with an existing course.',
+              icon: 'warning',
+              confirmButtonText: 'OK'
+            });
+          } else {
+            setCourseDataLocalStorage(courseData);
+            Swal.fire({
+              title: 'Success',
+              text: 'Course data has been successfully submitted!',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            });
+          }
+
         
     }
     
